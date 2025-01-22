@@ -48,6 +48,7 @@ const _defaultLandingPage = '''
 class FlutterWebAuth2Options {
   /// Construct an instance and specify the wanted options.
   const FlutterWebAuth2Options({
+    String? userDataFolderWindows,
     bool? preferEphemeral,
     this.debugOrigin,
     int? intentFlags,
@@ -59,7 +60,9 @@ class FlutterWebAuth2Options {
     this.httpsHost,
     this.httpsPath,
     this.customTabsPackageOrder,
-  })  : preferEphemeral = preferEphemeral ?? false,
+  })  :
+        userDataFolderWindows = userDataFolderWindows ?? '',
+        preferEphemeral = preferEphemeral ?? false,
         intentFlags = intentFlags ?? defaultIntentFlags,
         timeout = timeout ?? 5 * 60,
         landingPageHtml = landingPageHtml ?? _defaultLandingPage,
@@ -69,6 +72,7 @@ class FlutterWebAuth2Options {
   /// Construct an instance from JSON format.
   FlutterWebAuth2Options.fromJson(Map<String, dynamic> json)
       : this(
+          userDataFolderWindows: json['userDataFolderWindows'],
           preferEphemeral: json['preferEphemeral'],
           debugOrigin: json['debugOrigin'],
           intentFlags: json['intentFlags'],
@@ -81,6 +85,12 @@ class FlutterWebAuth2Options {
           httpsPath: json['httpsPath'],
           customTabsPackageOrder: json['customTabsPackageOrder'],
         );
+
+  /// **Only has an effect on windows!**
+  /// The path to the webview executable.
+  /// Should not be a read only path
+  /// If not specified, the webview crashes in windows
+  final String? userDataFolderWindows;
 
   /// **Only has an effect on iOS and macOS!**
   /// If this is `true`, an ephemeral web browser session
