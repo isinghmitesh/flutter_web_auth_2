@@ -60,8 +60,7 @@ class FlutterWebAuth2Options {
     this.httpsHost,
     this.httpsPath,
     this.customTabsPackageOrder,
-  })  :
-        userDataFolderWindows = userDataFolderWindows ?? '',
+  })  : userDataFolderWindows = userDataFolderWindows ?? '',
         preferEphemeral = preferEphemeral ?? false,
         intentFlags = intentFlags ?? defaultIntentFlags,
         timeout = timeout ?? 5 * 60,
@@ -180,6 +179,7 @@ class FlutterWebAuth2Options {
 
   /// Convert this instance to JSON format.
   Map<String, dynamic> toJson() => {
+        'userDataFolderWindows': userDataFolderWindows,
         'preferEphemeral': preferEphemeral,
         'debugOrigin': debugOrigin,
         'intentFlags': intentFlags,
